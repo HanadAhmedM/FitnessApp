@@ -5,6 +5,7 @@
 //  Created by Hanad.Ahmed on 2024-05-02.
 //
 
+import Firebase
 import SwiftUI
 
 struct ContentView: View {
