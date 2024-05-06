@@ -1,16 +1,18 @@
 //
-//  LoginPage.swift
+//  RegisterPage.swift
 //  FitnessApp
 //
-//  Created by Hanad.Ahmed on 2024-05-02.
+//  Created by Hanad.Ahmed on 2024-05-06.
 //
 
 import SwiftUI
 
-struct LoginPage: View {
-    // State variables to store username and password
+struct RegisterPage: View {
+    // State variables to store username, email, password, and confirm password
     @State private var username: String = ""
+    @State private var email: String=""
        @State private var password: String = ""
+    @State private var confirmPassword: String = ""
     var body: some View {
         NavigationView{
             ZStack {
@@ -22,10 +24,10 @@ struct LoginPage: View {
                            Spacer()
                            VStack{
                                // Title
-                               Text("Login to your account ")
+                               Text("Create New Account  ")
                     
                                    .font(.system(size: 24, weight: .bold))
-                                   .padding(.bottom,20)
+                                   .padding(.bottom,30)
                                    
                                VStack(spacing:10) {
                             
@@ -42,6 +44,18 @@ struct LoginPage: View {
                                                                             .stroke( Color(red: 27/255, green: 178/255, blue: 115/255), lineWidth: 4)
                                                                             
                                                )
+                                           // Email TextField
+                                           TextField("Email", text: $email)
+                                               .padding()
+                                               .background(Color(red: 226/255, green: 234/255, blue: 226/255))
+                                               .cornerRadius(1.0)
+                                               .frame(width:300,height: 70)
+                                               .foregroundColor(.secondary)
+                                               .overlay(
+                                                                         RoundedRectangle(cornerRadius: 1.0)
+                                                                            .stroke( Color(red: 27/255, green: 178/255, blue: 115/255), lineWidth: 4)
+                                           )
+                                           
                                            // Password TextField
                                            TextField("Password", text: $password)
                                                .padding()
@@ -53,11 +67,23 @@ struct LoginPage: View {
                                                                          RoundedRectangle(cornerRadius: 1.0)
                                                                             .stroke( Color(red: 27/255, green: 178/255, blue: 115/255), lineWidth: 4)
                                            )
-                                           // Login Button
+                                           
+                                           // Conform Password TextField
+                                           TextField("Conform Password", text: $confirmPassword)
+                                               .padding()
+                                               .background(Color(red: 226/255, green: 234/255, blue: 226/255))
+                                               .cornerRadius(1.0)
+                                               .frame(width:300,height: 70)
+                                               .foregroundColor(.secondary)
+                                               .overlay(
+                                                                         RoundedRectangle(cornerRadius: 1.0)
+                                                                            .stroke( Color(red: 27/255, green: 178/255, blue: 115/255), lineWidth: 4)
+                                           )
+                                           // SIGN UP Button
                                            Button(action: {
                                                // Add action for login button here
                                            }) {
-                                               Text("LOGIN")
+                                               Text("SIGN UP")
                                                    .foregroundColor(.white)
                                                    .padding(.top,10)
                                                    .frame(width:300,height: 70)
@@ -67,22 +93,21 @@ struct LoginPage: View {
                                        }.padding(.top, 20)
                                            
                                    }.padding(.leading,20)
-                                       .padding(.top,30)
-                             
+                                       .padding(.top,20)
+                                  
                                    HStack{
-                                       Text("Dont have an account?")
-                                       NavigationLink(destination: RegisterPage()){
-                                           Text("Register here")
+                                       Text("I have an account?")
+                                       NavigationLink(destination: LoginPage()){
+                                           Text("Login here")
                                                              .font(.system(size: 14))
                                                              .foregroundColor( Color(red: 27/255, green: 178/255, blue: 115/255))
                                        }
-                                 
-                                                        
-                                                     
+                                      
+                                                         
                                    }
-                                   .padding(.top,70)
+                                   .padding(.top,40)
                                    
-                                   .padding(.bottom,50)
+                                   .padding(.bottom,80)
             
                             
                            }
@@ -102,9 +127,8 @@ struct LoginPage: View {
                    .ignoresSafeArea() // Extend background color to edges of screen
                }
         }
-      
+       
        }
-
 #Preview {
-    LoginPage()
+    RegisterPage()
 }
