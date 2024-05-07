@@ -13,6 +13,7 @@
 		858BA5B62BE3C44C0032E3A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 858BA5B52BE3C44C0032E3A9 /* Preview Assets.xcassets */; };
 		858BA5BD2BE3CE580032E3A9 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858BA5BC2BE3CE580032E3A9 /* LoginPage.swift */; };
 		858BA5BF2BE8BBD60032E3A9 /* RegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858BA5BE2BE8BBD60032E3A9 /* RegisterPage.swift */; };
+		D26FBE952BEAE22E002D4562 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26FBE942BEAE22D002D4562 /* ProfilePage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		858BA5B52BE3C44C0032E3A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		858BA5BC2BE3CE580032E3A9 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		858BA5BE2BE8BBD60032E3A9 /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
+		D26FBE942BEAE22D002D4562 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				858BA5B42BE3C44C0032E3A9 /* Preview Content */,
 				858BA5BC2BE3CE580032E3A9 /* LoginPage.swift */,
 				858BA5BE2BE8BBD60032E3A9 /* RegisterPage.swift */,
+				D26FBE942BEAE22D002D4562 /* ProfilePage.swift */,
 			);
 			path = FitnessApp;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			files = (
 				858BA5B12BE3C4470032E3A9 /* ContentView.swift in Sources */,
 				858BA5BD2BE3CE580032E3A9 /* LoginPage.swift in Sources */,
+				D26FBE952BEAE22E002D4562 /* ProfilePage.swift in Sources */,
 				858BA5AF2BE3C4470032E3A9 /* FitnessAppApp.swift in Sources */,
 				858BA5BF2BE8BBD60032E3A9 /* RegisterPage.swift in Sources */,
 			);
