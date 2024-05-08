@@ -13,6 +13,11 @@ struct RegisterPage: View {
     @State private var email: String=""
        @State private var password: String = ""
     @State private var confirmPassword: String = ""
+  
+       let auto = FireBase()
+    @State private var showAlert = false
+      @State private var alertMessage = ""
+        
     var body: some View {
         NavigationView{
             ZStack {
@@ -80,8 +85,27 @@ struct RegisterPage: View {
                                                                             .stroke( Color(red: 27/255, green: 178/255, blue: 115/255), lineWidth: 4)
                                            )
                                            // SIGN UP Button
-                                           Button(action: {
-                                               // Add action for login button here
+                                           Button(action: { 
+                                               
+                                               // Check if passwords match
+                                               if password != confirmPassword{
+                                                   Button(action: {
+                                                       // Show an alert
+                                                                              self.showAlert = true
+                                                                              self.alertMessage = "Passwords need to match"
+                                                   }){
+                                                       EmptyView()
+                                                   }
+                                                   .alert(isPresented: $showAlert) {
+                                                                           Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                                                                       }
+                                                   .hidden() // Hide the button, it's just for triggering the alert
+                                               } else {
+                                                   auto.register( username: username , email: email, password: password)
+                                               }
+                                               
+                                           
+                                            
                                            }) {
                                                Text("SIGN UP")
                                                    .foregroundColor(.white)
@@ -127,7 +151,7 @@ struct RegisterPage: View {
                    .ignoresSafeArea() // Extend background color to edges of screen
                }
         }
-       
+    
        }
 #Preview {
     RegisterPage()
