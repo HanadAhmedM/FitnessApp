@@ -6,3 +6,9 @@
 //
 
 import Foundation
+class ReceptBasic: Codable, Identifiable{
+    var id: Int
+    var title: String
+    var image: String
+    var imageType: String
+}
