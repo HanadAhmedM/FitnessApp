@@ -44,6 +44,9 @@
 		858BA5FD2BEA95770032E3A9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858BA5FC2BEA95770032E3A9 /* User.swift */; };
 		858BA5FF2BEA99A20032E3A9 /* UserDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858BA5FE2BEA99A20032E3A9 /* UserDao.swift */; };
 		D2CB08CC2BF26A23008C26FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CB08CB2BF26A23008C26FF /* GoogleService-Info.plist */; };
+		D2CB08F52BF2B1E0008C26FF /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB08F42BF2B1E0008C26FF /* Exercise.swift */; };
+		D2CB08F72BF2B223008C26FF /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB08F62BF2B223008C26FF /* ExerciseView.swift */; };
+		D2CB08F92BF2B237008C26FF /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB08F82BF2B237008C26FF /* ExerciseListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		858BA5FC2BEA95770032E3A9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		858BA5FE2BEA99A20032E3A9 /* UserDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDao.swift; sourceTree = "<group>"; };
 		D2CB08CB2BF26A23008C26FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D2CB08F42BF2B1E0008C26FF /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		D2CB08F62BF2B223008C26FF /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
+		D2CB08F82BF2B237008C26FF /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,9 @@
 				858BA5B42BE3C44C0032E3A9 /* Preview Content */,
 				858BA5BC2BE3CE580032E3A9 /* LoginPage.swift */,
 				858BA5BE2BE8BBD60032E3A9 /* RegisterPage.swift */,
+				D2CB08F42BF2B1E0008C26FF /* Exercise.swift */,
+				D2CB08F62BF2B223008C26FF /* ExerciseView.swift */,
+				D2CB08F82BF2B237008C26FF /* ExerciseListView.swift */,
 				858BA5FA2BEA89270032E3A9 /* FireBase.swift */,
 				858BA5FC2BEA95770032E3A9 /* User.swift */,
 				858BA5FE2BEA99A20032E3A9 /* UserDao.swift */,
@@ -243,11 +252,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				858BA5B12BE3C4470032E3A9 /* ContentView.swift in Sources */,
+				D2CB08F52BF2B1E0008C26FF /* Exercise.swift in Sources */,
 				858BA5BD2BE3CE580032E3A9 /* LoginPage.swift in Sources */,
+				D2CB08F72BF2B223008C26FF /* ExerciseView.swift in Sources */,
 				858BA5FD2BEA95770032E3A9 /* User.swift in Sources */,
 				858BA5FF2BEA99A20032E3A9 /* UserDao.swift in Sources */,
 				858BA5FB2BEA89270032E3A9 /* FireBase.swift in Sources */,
 				858BA5AF2BE3C4470032E3A9 /* FitnessAppApp.swift in Sources */,
+				D2CB08F92BF2B237008C26FF /* ExerciseListView.swift in Sources */,
 				858BA5BF2BE8BBD60032E3A9 /* RegisterPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
