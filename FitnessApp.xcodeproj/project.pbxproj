@@ -43,6 +43,7 @@
 		858BA5FB2BEA89270032E3A9 /* FireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858BA5FA2BEA89270032E3A9 /* FireBase.swift */; };
 		858BA5FD2BEA95770032E3A9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858BA5FC2BEA95770032E3A9 /* User.swift */; };
 		858BA5FF2BEA99A20032E3A9 /* UserDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858BA5FE2BEA99A20032E3A9 /* UserDao.swift */; };
+		85E02CAB2BF498FF00279874 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E02CAA2BF498FF00279874 /* AppDelegate.swift */; };
 		D2CB08CC2BF26A23008C26FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CB08CB2BF26A23008C26FF /* GoogleService-Info.plist */; };
 		D2CB08F52BF2B1E0008C26FF /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB08F42BF2B1E0008C26FF /* Exercise.swift */; };
 		D2CB08F72BF2B223008C26FF /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB08F62BF2B223008C26FF /* ExerciseView.swift */; };
@@ -66,6 +67,7 @@
 		858BA5FA2BEA89270032E3A9 /* FireBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBase.swift; sourceTree = "<group>"; };
 		858BA5FC2BEA95770032E3A9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		858BA5FE2BEA99A20032E3A9 /* UserDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDao.swift; sourceTree = "<group>"; };
+		85E02CAA2BF498FF00279874 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2CB08CB2BF26A23008C26FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D2CB08F42BF2B1E0008C26FF /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		D2CB08F62BF2B223008C26FF /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				858BA5FE2BEA99A20032E3A9 /* UserDao.swift */,
 				DCF143122BF49AA70075585D /* SearchView.swift */,
 				DCF143142BF49ABE0075585D /* FilterView.swift */,
+				85E02CAA2BF498FF00279874 /* AppDelegate.swift */,
 			);
 			path = FitnessApp;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E02CAB2BF498FF00279874 /* AppDelegate.swift in Sources */,
 				858BA5B12BE3C4470032E3A9 /* ContentView.swift in Sources */,
 				D2CB08F52BF2B1E0008C26FF /* Exercise.swift in Sources */,
 				858BA5BD2BE3CE580032E3A9 /* LoginPage.swift in Sources */,
