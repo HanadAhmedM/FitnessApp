@@ -9,15 +9,12 @@ import SwiftUI
 import Firebase
 @main
 struct FitnessAppApp: App {
-  
-    init(){
-     
-        FirebaseApp.configure()
-    }
+    // register app delegate for Firebase setup
+        @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {
         WindowGroup {
-          RegisterPage()
+            LoginPage()
         }
     }
 }
