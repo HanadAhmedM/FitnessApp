@@ -67,17 +67,19 @@ struct CalendarPage: View {
                                     .cornerRadius(20.0)
                             }
                             
-                            Button(action: {
-                                self.selectedButton = "Food" // Update selected button
-                            }) {
+                            //Button(action: {
+                              //  self.selectedButton = "Food" // Update selected button
+                          //  }) {
+                           
+                            NavigationLink(destination: RecepiesView(selectedDay: $selectedDay)) { // Navigate to RecepiesView
                                 Text("Food")
-                                    .foregroundColor(.black)
-                                    .padding()
-                                    .frame(width: 150, height: 40)
-                                    .background(selectedButton == "Food" ? Color.green : Color(red: 226/255, green: 234/255, blue: 226/255)) // Highlight selected button
-                                    .cornerRadius(20.0)
+                                .foregroundColor(.black)
+                                .padding()
+                                .frame(width: 150, height: 40)
+                                .background(selectedButton == "Food" ? Color.green : Color(red: 226/255, green: 234/255, blue: 226/255)) // Highlight selected button
+                                 .cornerRadius(20.0)
                             }
-                        }
+                   }
                         .padding(.vertical, 10)
                         
                         VStack(alignment: .leading) { // Display exercises for the selected day

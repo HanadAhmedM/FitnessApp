@@ -30,7 +30,12 @@ struct PlanView: View {
                     Image(systemName: "dumbbell") // Icon for the tab
                     Text("Workout") // Text label for the tab
                 }
-            // Third tab: ProfileView
+            RecepiesView(selectedDay: .constant("M")) // Temporary default value for selected day
+                    .tabItem {
+                    Image(systemName: "fork.knife") // Icon for the tab (use appropriate system image)
+                    Text("Food") // Text label for the tab
+                 }
+            // Fourth tab: ProfileView
             ProfileView()
                 .tabItem {
                     Image(systemName: "person") // Icon for the tab

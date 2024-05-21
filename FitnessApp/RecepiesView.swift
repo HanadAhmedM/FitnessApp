@@ -16,6 +16,7 @@ struct RecepiesView: View {
     @State var feedbackText = ""
     @State var listNameInput = ""
     @State var feedbackColor = Color.green
+    @Binding var selectedDay: String
     var body: some View {
         ZStack(alignment: .top){
             Color(red: 27/255, green: 178/255, blue: 115/255)
@@ -175,6 +176,9 @@ struct ListChoiceView: View {
     }
 }
 
-#Preview {
-    RecepiesView()
+
+struct RecepiesView_Previews: PreviewProvider {
+    static var previews: some View {
+        RecepiesView(selectedDay: .constant("M"))
+    }
 }
