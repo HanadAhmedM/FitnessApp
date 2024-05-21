@@ -74,8 +74,8 @@ struct LoginPage: View {
                                        .alert(isPresented: $showAlert) {
                                            Alert(title: Text("Login Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                                        }
-                                       // This NavigationLink is used to navigate to LoginPage
-                                       NavigationLink(destination: ContentView(), isActive: $userIsRegistered) {
+                                       // This NavigationLink is used to navigate to 
+                                       NavigationLink(destination: PlanView(), isActive: $userIsRegistered) {
                                            EmptyView()
                                        }
                                        .hidden()

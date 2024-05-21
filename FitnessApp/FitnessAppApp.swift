@@ -15,6 +15,7 @@ struct FitnessAppApp: App {
     var body: some Scene {
         WindowGroup {
             LoginPage()
+                .environmentObject(WorkoutData())
         }
     }
 }

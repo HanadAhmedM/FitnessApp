@@ -3,9 +3,39 @@
 //  FitnessApp
 //
 //  Created by Elin.Andersson on 2024-05-13.
-//
+//Tillfällig exercise sida som förklarar varje övning hårkodad exercise med bild och text
 
 import Foundation
+import SwiftUI
+
+struct ExerciseView: View {
+    let exercise: Exercise
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Image(exercise.imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 200)
+                .padding()
+            
+            Text(exercise.name)
+                .font(.largeTitle)
+                .bold()
+                .padding([.top, .bottom])
+            
+            Text(exercise.description)
+                .padding([.leading, .trailing, .bottom]) // Add padding to the leading, trailing, and bottom edges
+            
+            Spacer() // Add a spacer to push the content to the top
+        }
+        .navigationTitle(exercise.name) // Set the navigation title to the exercise name
+        .padding() // Add padding around the entire VStack
+    }
+}
+
+
+/*import Foundation
 import SwiftUI
 
 // Vy för att visa en enskild övning
@@ -56,5 +86,5 @@ struct ExerciseView: View {
             }
         }
     }
-
+*/
 
