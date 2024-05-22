@@ -7,6 +7,8 @@
 
 //en tillfällig(?) view som visar en lista med träningsövningar och tillåter användaren att navigera till andra vyer för att lägga till och namnge träningspass.
 
+
+
 import SwiftUI
 import Foundation
 
@@ -20,30 +22,53 @@ struct WorkoutsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color(red: 27/255, green: 178/255, blue: 115/255).ignoresSafeArea()
+                Color(red: 27/255, green: 178/255, blue: 115/255).ignoresSafeArea()//bakgrundsgrön
                 VStack {
                     Text("Workouts")
                         .font(.system(size: 24, weight: .bold))
                         .padding(.top, 20)
                         .foregroundColor(.white)
                     
-                    List { //scrollningsbar lista
+                    
+                    ScrollView { //scrollningsbar lista
                         NavigationLink(destination: ExercisesListView(selectedDay: $selectedDay, selectedExercise: $selectedExercise, showWorkoutNameDialog: $showWorkoutNameDialog, navigateToNamingView: $navigateToNamingView)) {
-                            HStack {
-                                Image(systemName: "circle.fill")
-                                    .foregroundColor(.green)
-                                Text("Exercises List")
+                            VStack(alignment: .leading) {
+                                Text("Custom Mode")
+                                    //.font(.headline)
+                                    .font(.system(size: 24, weight: .bold))
+                                    .foregroundColor(.black)
+                                HStack {
+                                    Text("Create your own workout")
+                                    // .font(.subheadline)
+                                        .font(.system(size: 16))
+                                        .foregroundColor(.black)
+                                       // .bold()
+                                      
+                                    //ÄNDRA ExercisesListView TILL HANADS SIDA:
+                                    NavigationLink(destination: ExercisesListView(selectedDay: $selectedDay, selectedExercise: $selectedExercise, showWorkoutNameDialog: $showWorkoutNameDialog, navigateToNamingView: $navigateToNamingView)) {
+                                        
+                                        Image(systemName: "plus.app")
+                                            .resizable()
+                                            .frame(width: 25, height: 25)
+                                            .background(Color.white)
+                                            .padding(.leading,70)
+                                    }
+                                }
+                                
+                            }
+                                .padding()
+                                .frame(maxWidth: .infinity, minHeight: 100, alignment: .leading)
+                                .background(Color(red: 156/255, green: 216/255, blue: 191/255)) //ljusgrön
+                                .cornerRadius(15)
                             }
                         }
-                    }
+                    
+                
+                    .padding()
                     .background(Color.white)
                     .cornerRadius(30)
                     .padding()
-                    
-                    NavigationLink(destination: WorkoutNamingView(selectedDay: $selectedDay, selectedExercise: $selectedExercise).environmentObject(workoutData),
-                        isActive: $navigateToNamingView) {
-                        EmptyView()
-                    }
+
                 }
             }
         }
