@@ -29,7 +29,7 @@ struct WorkoutsChooseExerciseView: View {
                     
                     
                             ScrollView { //scrollningsbar lista
-                                NavigationLink(destination: ExercisesListView(selectedDay: $selectedDay, selectedExercise: $selectedExercise, showWorkoutNameDialog: $showWorkoutNameDialog, navigateToNamingView: $navigateToNamingView)) {
+                                NavigationLink(destination: ExercisesListView(selectedExercise: $selectedExercise, workoutData: _workoutData)) {
                                     VStack(alignment: .leading) {
                                         Text("Custom Name")
                                         //.font(.headline)
@@ -38,7 +38,7 @@ struct WorkoutsChooseExerciseView: View {
                                         
                                         
                                         //ÄNDRA ExercisesListView TILL HANADS SIDA:
-                                        NavigationLink(destination: ExercisesListView(selectedDay: $selectedDay, selectedExercise: $selectedExercise, showWorkoutNameDialog: $showWorkoutNameDialog, navigateToNamingView: $navigateToNamingView)) {
+                                        NavigationLink(destination: ExercisesListView(selectedExercise: $selectedExercise, workoutData: _workoutData)){
                                             
                                             Image(systemName: "plus.app")
                                                 .resizable()
