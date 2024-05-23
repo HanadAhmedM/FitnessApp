@@ -66,7 +66,8 @@ struct WorkoutNamingView: View {
 
 struct WorkoutNamingView_Previews: PreviewProvider {
     @State static var selectedDay = "M"
-    @State static var selectedExercise: Exercise? = Exercise(name: "Sample Exercise", description: "This is a sample description.", imageName: "sampleImage")
+    @State static var selectedExercise: Exercise? = nil
+
     static var previews: some View {
         WorkoutNamingView(
             selectedDay: $selectedDay,

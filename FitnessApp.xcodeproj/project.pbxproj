@@ -41,6 +41,8 @@
 		858BA5FD2BEA95770032E3A9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858BA5FC2BEA95770032E3A9 /* User.swift */; };
 		858BA5FF2BEA99A20032E3A9 /* UserDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858BA5FE2BEA99A20032E3A9 /* UserDao.swift */; };
 		85E02CAB2BF498FF00279874 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E02CAA2BF498FF00279874 /* AppDelegate.swift */; };
+		85E02CBF2BFDFA2B00279874 /* WorkoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E02CBE2BFDFA2B00279874 /* WorkoutAPI.swift */; };
+		85E02CC12BFDFF5D00279874 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E02CC02BFDFF5D00279874 /* Exercise.swift */; };
 		D223D7342BFC72B90087C859 /* CalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D223D7332BFC72B90087C859 /* CalendarPage.swift */; };
 		D223D7362BFC72DF0087C859 /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D223D7352BFC72DF0087C859 /* PlanView.swift */; };
 		D223D7382BFC73290087C859 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D223D7372BFC73290087C859 /* ProfileView.swift */; };
@@ -74,6 +76,8 @@
 		858BA5FC2BEA95770032E3A9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		858BA5FE2BEA99A20032E3A9 /* UserDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDao.swift; sourceTree = "<group>"; };
 		85E02CAA2BF498FF00279874 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		85E02CBE2BFDFA2B00279874 /* WorkoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutAPI.swift; sourceTree = "<group>"; };
+		85E02CC02BFDFF5D00279874 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		D223D7332BFC72B90087C859 /* CalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPage.swift; sourceTree = "<group>"; };
 		D223D7352BFC72DF0087C859 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		D223D7372BFC73290087C859 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 				858BA5FC2BEA95770032E3A9 /* User.swift */,
 				858BA5FE2BEA99A20032E3A9 /* UserDao.swift */,
 				85E02CAA2BF498FF00279874 /* AppDelegate.swift */,
+				85E02CC02BFDFF5D00279874 /* Exercise.swift */,
 			);
 			path = FitnessApp;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC427F62BFB9A6B0035CB86 /* FoodApiService.swift */,
+				85E02CBE2BFDFA2B00279874 /* WorkoutAPI.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 				D223D7342BFC72B90087C859 /* CalendarPage.swift in Sources */,
 				D223D73C2BFC751B0087C859 /* WorkoutNamingData.swift in Sources */,
 				85E02CAB2BF498FF00279874 /* AppDelegate.swift in Sources */,
+				85E02CBF2BFDFA2B00279874 /* WorkoutAPI.swift in Sources */,
 				DCC428022BFB9ADA0035CB86 /* ReceptFull.swift in Sources */,
 				858BA5B12BE3C4470032E3A9 /* ContentView.swift in Sources */,
 				D223D7362BFC72DF0087C859 /* PlanView.swift in Sources */,
@@ -330,6 +337,7 @@
 				D2CB08F72BF2B223008C26FF /* ExerciseView.swift in Sources */,
 				858BA5FD2BEA95770032E3A9 /* User.swift in Sources */,
 				858BA5FF2BEA99A20032E3A9 /* UserDao.swift in Sources */,
+				85E02CC12BFDFF5D00279874 /* Exercise.swift in Sources */,
 				858BA5FB2BEA89270032E3A9 /* FireBase.swift in Sources */,
 				858BA5AF2BE3C4470032E3A9 /* FitnessAppApp.swift in Sources */,
 				D223D73A2BFC74C70087C859 /* WorkoutsView.swift in Sources */,
