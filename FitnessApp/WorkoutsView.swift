@@ -45,8 +45,8 @@ struct WorkoutsView: View {
                                        // .bold()
                                       
                                     //ÄNDRA ExercisesListView TILL HANADS SIDA:
-                                    NavigationLink(destination: ExercisesListView(selectedDay: $selectedDay, selectedExercise: $selectedExercise, showWorkoutNameDialog: $showWorkoutNameDialog, navigateToNamingView: $navigateToNamingView)) {
-                                        
+                                    NavigationLink(destination: WorkoutsChooseExerciseView(selectedDay: $selectedDay)) {
+
                                         Image(systemName: "plus.app")
                                             .resizable()
                                             .frame(width: 25, height: 25)

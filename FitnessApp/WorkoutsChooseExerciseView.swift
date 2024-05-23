@@ -42,9 +42,11 @@ struct WorkoutsChooseExerciseView: View {
                                             
                                             Image(systemName: "plus.app")
                                                 .resizable()
-                                                .frame(width: 25, height: 25)
+                                                .frame(width: 45, height: 45)
+                                                .foregroundColor(Color(red: 27/255, green: 178/255, blue: 115/255))
                                                 .background(Color.white)
                                                 .padding(.leading,250)
+                                                .padding(.bottom,100)
                                         }
                                         Spacer()
                                         
@@ -52,9 +54,11 @@ struct WorkoutsChooseExerciseView: View {
                                             .font(.system(size: 22, weight: .bold))
                                             .padding(.top, 20)
                                             .foregroundColor(.gray)
-                                        ScrollView{
-                                            // EXERCISES TO CHOOSE
-                                        }
+                                        Spacer()
+                                        
+                                            //ALL CHOSEN EXERCISES FROM API HERE
+                                           
+                                        
 
                                        
                                     }
