@@ -9,31 +9,93 @@ import Foundation
 import SwiftUI
 
 struct ExerciseView: View {
-    let exercise: Exercise
+  
+    @State private var workouts: [Exercise] = []
+    @Binding var bodyPart: String
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Image(exercise.imageName)
-                .resizable()
-                .scaledToFit()
-                .frame(height: 200)
-                .padding()
-            
-            Text(exercise.name)
-                .font(.largeTitle)
-                .bold()
-                .padding([.top, .bottom])
-            
-            Text(exercise.description)
-                .padding([.leading, .trailing, .bottom]) // Add padding to the leading, trailing, and bottom edges
-            
-            Spacer() // Add a spacer to push the content to the top
+            VStack {
+                List($workouts, id: \.id) { $exercise in
+                    NavigationLink(destination: ExerciseDetailView(exercise: exercise)) {
+                        HStack(spacing: 20) {
+                            AsyncImage(url: URL(string: exercise.gifUrl)) { image in
+                                image.resizable()
+                                    .frame(width: 100, height: 100)
+                                    .background(Color(hex: "E2EAE2"))
+                                    .cornerRadius(8)
+                            } placeholder: {
+                                Image(systemName: "photo")
+                                    .resizable()
+                                    .frame(width: 100, height: 100)
+                            }
+                            Text(exercise.name)
+                                .font(.system(size: 17, weight: .bold))
+                                                                .foregroundColor(Color.black)
+                                                               
+                                                                   .frame(maxWidth: .infinity) 
+                        }
+                        
+                    }.background(Color(hex: "E2EAE2"))
+                        .frame(width: 350,height: 100)
+                        .cornerRadius(10)
+                }
+                
+                .listStyle(PlainListStyle())
+                .navigationTitle("Exercises")
+                .onAppear {
+                    fetchData()
+                }
+            }
         }
-        .navigationTitle(exercise.name) // Set the navigation title to the exercise name
-        .padding() // Add padding around the entire VStack
+        
+        func fetchData() {
+            WorkoutAPI().fetchExercises(for: bodyPart) { result in
+                          DispatchQueue.main.async {
+                             
+                              switch result {
+                              case .success(let workouts):
+                                  self.workouts = workouts
+                              case .failure(let error):
+                                  print("Error fetching data:", error)
+                                  // Handle error if needed
+                              }
+                          }
+                      }
+                  }
+              }
+
+
+    struct ExerciseDetailView: View {
+        let exercise: Exercise
+        
+        var body: some View {
+            VStack {
+                AsyncImage(url: URL(string: exercise.gifUrl)) { image in
+                    image.resizable()
+                        .scaledToFit()
+                        .frame(height: 200)
+                } placeholder: {
+                    Image(systemName: "photo")
+                        .frame(height: 200)
+                }
+                Text(exercise.name)
+                    .font(.title)
+                    .padding()
+                ForEach(exercise.instructions, id: \.self) { instruction in
+                    Text(instruction)
+                        .padding()
+                }
+                Spacer()
+            }
+            .navigationTitle(exercise.name)
+        }
     }
+      
+#Preview {
+ ExerciseView(bodyPart: .constant("back"))
 }
 
+   
 
 /*import Foundation
 import SwiftUI
