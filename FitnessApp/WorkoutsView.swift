@@ -15,7 +15,6 @@ struct WorkoutsView: View {
     @State private var selectedExercise: Exercise? // State for tracking the selected exercise
     @State private var showWorkoutNameDialog = false // State for controlling the display of workout name dialog
     
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -23,7 +22,7 @@ struct WorkoutsView: View {
                 VStack {
                     Text("Workouts")
                         .font(.system(size: 24, weight: .bold))
-                        .padding(.top, 20)
+                        .padding(.top, 3) // Adjusted top padding to move the title up
                         .foregroundColor(.white)
                     
                     ScrollView { // Scrollable list
@@ -42,12 +41,12 @@ struct WorkoutsView: View {
                                                     .foregroundColor(.black)
                                                 Spacer()
                                                 NavigationLink(destination: WorkoutsChooseExerciseView(selectedDay: $selectedDay)) {
-                                                    
                                                     Image(systemName: "plus.app")
                                                         .resizable()
                                                         .frame(width: 25, height: 25)
                                                         .background(Color.white)
                                                 }
+                                                
                                             }
                                             .padding(.top, 10)
                                         }
@@ -57,7 +56,7 @@ struct WorkoutsView: View {
                                         .cornerRadius(15)
                                         .padding(.horizontal)
                                     }
-                            if let workouts = workoutData.selectedExercises[selectedDay], !workouts.isEmpty {
+                           /* if let workouts = workoutData.selectedExercises[selectedDay], !workouts.isEmpty {
                                 ForEach(workouts) { workout in
                                     VStack(alignment: .leading) {
                                         Text(workout.name)
@@ -78,30 +77,30 @@ struct WorkoutsView: View {
                                     .foregroundColor(.gray)
                                     .italic()
                                     .padding(.top, 20)
-                            }
+                            }*/
                         }
+                        
+                        
+                        // Embed ExercisesListView directly in WorkoutsView
+                        ExercisesListView(selectedExercise: $selectedExercise)
+                            .environmentObject(workoutData)
+                            .frame(height: 450) // Adjusted height to 500
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(30)
+                            .padding(.bottom, 10)
+                            .padding(.horizontal)
                     }
-                    
-                    // Embed ExercisesListView directly in WorkoutsView
-                  ExercisesListView(selectedExercise: $selectedExercise)
-                      .environmentObject(workoutData)
-                      .frame(height: 350) // Adjust the height as needed
-                       .padding(.top, 10)
-            
-            .padding()
-            .background(Color.white)
-            .cornerRadius(30)
-            .padding()
+                    .padding(.top, 1) // Added top padding to move the whole VStack up
+                }
+               // .navigationBarHidden(true)
+            }
         }
     }
-        .navigationBarHidden(true)
 }
-}
-}
-
 struct WorkoutsView_Previews: PreviewProvider {
     @State static var selectedDay = "M"
-    
+
     static var previews: some View {
         WorkoutsView(selectedDay: $selectedDay)
             .environmentObject(WorkoutData())
