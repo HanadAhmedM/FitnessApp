@@ -67,6 +67,10 @@ struct NamedWorkout: Identifiable, Codable {
     var name: String
     var exercises: [Exercise]
 }
-
+/*struct ExerciseType: Identifiable, Codable {
+    var id = UUID()
+    var name: String
+    var description: String
+}*/
 
 

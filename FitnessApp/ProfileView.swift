@@ -66,6 +66,18 @@ struct ProfileView: View {
                     }
                     
                     Spacer()
+                    Button(action: {
+                            // Log out action här
+                            // T.ex. reset användardata och navigera till inloggningssidan
+                        }) {
+                            Text("Log out")
+                                .foregroundColor(Color(red: 27/255, green: 178/255, blue: 115/255))
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(10)
+                        
+                        }
+                    Spacer()
                 }
             }
         }

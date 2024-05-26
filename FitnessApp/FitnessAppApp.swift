@@ -11,6 +11,8 @@ import Firebase
 struct FitnessAppApp: App {
     // register app delegate for Firebase setup
         @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @EnvironmentObject var workoutData: WorkoutData
+
     
     var body: some Scene {
         WindowGroup {

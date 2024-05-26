@@ -15,6 +15,10 @@ struct LoginPage: View {
        @State private var showAlert = false
        @State private var alertMessage = ""
        @State  var userIsRegistered = false
+       @State private var isLoggedIn = false
+       //@Binding var isLoggedIn: Bool
+
+
        var auto = FireBase()
        let authRef = Auth.auth()
        var body: some View {
@@ -130,14 +134,22 @@ struct LoginPage: View {
                        showAlert = true
                        alertMessage = "Login failed. Please check your credentials."
                    }
+                   if isLoggedIn {
+                       PlanView()
+                           .environmentObject(WorkoutData())
+                   } else {
+                       VStack {
+                           // Din inloggningslayout här
+                           Button("Log In") {
+                               // Hantera inloggning här
+                               isLoggedIn = true
+                           }
+                       }
+                   }
+
                }
            }
        }
-           
-           
-      
-       
-       
    }
 
 #Preview {

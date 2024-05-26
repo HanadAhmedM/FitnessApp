@@ -74,7 +74,7 @@ struct WorkoutsView: View {
                                     .padding(.bottom, 10)
                                 }
                             } else {
-                                Text("No workout chosen")
+                                Text("")
                                     .foregroundColor(.gray)
                                     .italic()
                                     .padding(.top, 20)
@@ -85,7 +85,7 @@ struct WorkoutsView: View {
                     // Embed ExercisesListView directly in WorkoutsView
                   ExercisesListView(selectedExercise: $selectedExercise)
                       .environmentObject(workoutData)
-                      .frame(height: 500) // Adjust the height as needed
+                      .frame(height: 350) // Adjust the height as needed
                        .padding(.top, 10)
             
             .padding()
