@@ -1,3 +1,11 @@
+
+//
+//  CalendarPage.swift
+//  FitnessApp
+//
+//  Created by Elin.Andersson on 2024-05-21.
+//
+import Foundation
 import SwiftUI
 
 
@@ -16,6 +24,7 @@ struct CalendarPage: View {
                 Color(red: 27/255, green: 178/255, blue: 115/255)
                     .ignoresSafeArea()
                 
+
                 VStack(spacing: 0) {
                     VStack(spacing: 0) {
                         HStack {
@@ -30,14 +39,18 @@ struct CalendarPage: View {
                                 .padding(.trailing, 20)
                         }
                         .padding(.top, 50)
+
                         
                         Text("Plan Type Per Week")
+
                             .foregroundColor(.white)
                             .padding(.bottom, 10)
                             .bold()
                     }
                     .background(Color(red: 27/255, green: 178/255, blue: 115/255))
+
                    
+
                     VStack {
                         HStack {
                             ForEach(weekDays, id: \.self) { day in
@@ -47,13 +60,15 @@ struct CalendarPage: View {
                                     .cornerRadius(15)
                                     .onTapGesture {
                                         self.selectedDay = day
+
                                         self.selectedExerciseToday = day // Update selectedExerciseToday when day changes
                                         fetchData(for: selectedExerciseToday) // Fetch exercises for the selected day
+
                                     }
                             }
                         }
                         .padding(.top, 10)
-                        
+
                         HStack {
                             NavigationLink(
                                 destination: WorkoutsView(selectedDay: $selectedDay)) {
@@ -126,6 +141,7 @@ struct CalendarPage: View {
                                            
                                        
                                         .padding(.horizontal, 10)
+
                                     }
                                     .padding(.vertical, 5) // Add vertical padding between exercises
                                 }
@@ -133,8 +149,10 @@ struct CalendarPage: View {
                                 Text("No exercises for this day")
                                     .foregroundColor(.gray)
                             }
+
                         }.frame(height: 500)
                         .padding(.horizontal, 20)
+
                     }
                     .background(Color.white)
                     .cornerRadius(20)
@@ -143,6 +161,28 @@ struct CalendarPage: View {
                 }
                 .padding(.bottom, 5)
             }
+            .navigationBarHidden(true)
+        }
+    }
+
+    func fullDayName(from shortName: String) -> String {
+        switch shortName {
+        case "M":
+            return "Monday"
+        case "T":
+            return "Tuesday"
+        case "W":
+            return "Wednesday"
+        case "Th":
+            return "Thursday"
+        case "F":
+            return "Friday"
+        case "S":
+            return "Saturday"
+        case "Su":
+            return "Sunday"
+        default:
+            return shortName
         }
     }
     

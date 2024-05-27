@@ -2,6 +2,7 @@ import SwiftUI
 import Foundation
 
 struct WorkoutsView: View {
+
     @Binding var selectedDay: String? // Change to optional Binding
     @EnvironmentObject var workoutData: WorkoutData
     @State private var navigateToNamingView = false
@@ -11,11 +12,13 @@ struct WorkoutsView: View {
     var body: some View {
         NavigationView {
      
+
             ZStack {
                 Color(red: 27/255, green: 178/255, blue: 115/255).ignoresSafeArea() // Background color
                 VStack {
                     Text("Workouts")
                         .font(.system(size: 24, weight: .bold))
+
                         .padding(.top, 20)
                         .foregroundColor(.white)
                     
@@ -68,6 +71,7 @@ struct WorkoutsView: View {
 
 struct WorkoutsView_Previews: PreviewProvider {
     @State static var selectedDay: String? = ""
+
 
     static var previews: some View {
         WorkoutsView(selectedDay: $selectedDay)
