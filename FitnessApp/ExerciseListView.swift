@@ -6,44 +6,44 @@ struct ExercisesListView: View {
     @Binding var selectedDay: String?
     @State private var bodyParts: [String] = []
     @EnvironmentObject var workoutData: WorkoutData
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(bodyParts, id: \.self) { bodyPart in
-                    NavigationLink(destination: ExerciseView(bodyPart: .constant(bodyPart))) {
-                        HStack(spacing: 20) {
-                            Image(bodyPart)
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                                .background(Color(hex: "E2EAE2"))
-                                .cornerRadius(8)
-                            
-                            Text(bodyPart)
-                                .font(.system(size: 17, weight: .bold))
-                                .foregroundColor(Color.black)
-                                .frame(maxWidth: .infinity) // Dynamically adjusts width based on content
-                            
-                            Spacer()
-                            
-                            if let selectedDay = selectedDay, !selectedDay.isEmpty {
-                                Button(action: {
-                                    workoutData.addExercise(bodyPart, to: selectedDay, name: bodyPart)
-                                    CalendarPage()
-                                }) {
-                                    Image("PlusK")
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                        .foregroundColor(Color.blue)
-                                        .padding(7)
-                                }
-                                .buttonStyle(PlainButtonStyle())
+                    HStack(spacing: 20) {
+                        Image(bodyPart)
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                            .background(Color(hex: "E2EAE2"))
+                            .cornerRadius(8)
+                        
+                        Text(bodyPart)
+                            .font(.system(size: 17, weight: .bold))
+                            .foregroundColor(Color.black)
+                            .frame(maxWidth: .infinity) // Dynamically adjusts width based on content
+                        
+                        Spacer()
+                        
+                        if let selectedDay = selectedDay, !selectedDay.isEmpty {
+                            Button(action: {
+                                workoutData.addExercise(bodyPart, to: selectedDay, name: bodyPart)
+                                presentationMode.wrappedValue.dismiss() // Dismiss the view and go back
+                            }) {
+                                Image("PlusK")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(Color.blue)
+                                    .padding(7)
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                 }
                 .background(Color(hex: "E2EAE2"))
-                .frame(width: 350, height: 100)
+                .padding(.leading,10)
+                .frame(width: 330, height: 100,alignment: .center)
                 .cornerRadius(10)
             }
             .background(Color(hex: "E2EAE2"))
@@ -85,7 +85,7 @@ extension Color {
 }
 
 struct ExercisesListView_Previews: PreviewProvider {
-    @State static var selectedDay: String? = ""
+    @State static var selectedDay: String? = "M"
     @State static var selectedExercise: String? = ""
 
     static var previews: some View {
