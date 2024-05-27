@@ -52,5 +52,3 @@ struct NamedWorkout: Identifiable, Codable {
     var name: String
     var exercises: [String]
 }
-
-
