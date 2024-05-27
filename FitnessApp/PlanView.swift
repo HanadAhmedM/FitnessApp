@@ -10,8 +10,6 @@ import Foundation
 import SwiftUI
 
 struct PlanView: View {
-    @EnvironmentObject var workoutData: WorkoutData
-
     init() {
         // Set the background color of the tab bar to white
         UITabBar.appearance().backgroundColor = UIColor.white
