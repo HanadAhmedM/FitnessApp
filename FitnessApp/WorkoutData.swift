@@ -1,11 +1,3 @@
-//
-//  WorkoutData.swift
-//  FitnessApp
-//
-//  Created by Elin.Andersson on 2024-05-21.
-
-//hanterar en användares träningspass och övningar, och två strukturer NamedWorkout och Exercise för att representera träningspass och övningar.
-
 import Foundation
 import SwiftUI
 
@@ -16,23 +8,16 @@ class WorkoutData: ObservableObject {
         loadWorkouts()
     }
     
-    func addExercise(_ exercise: Exercise, to day: String, name: String) {
-        if selectedExercises[day] != nil {
-            if let index = selectedExercises[day]?.firstIndex(where: { $0.name == name }) {
-                selectedExercises[day]?[index].exercises.append(exercise)
-            } else {
-                selectedExercises[day]?.append(NamedWorkout(name: name, exercises: [exercise]))
-            }
-        } else {
-            selectedExercises[day] = [NamedWorkout(name: name, exercises: [exercise])]
-        }
+    func addExercise(_ exercise: String, to day: String, name: String) {
+        // Replace any existing exercise for the specified day
+        selectedExercises[day] = [NamedWorkout(name: name, exercises: [exercise])]
         saveWorkouts()
     }
     
-    func deleteExercise(_ exercise: Exercise, from day: String, name: String) {
+    func deleteExercise(_ exercise: String, from day: String, name: String) {
         guard var workouts = selectedExercises[day] else { return }
         if let index = workouts.firstIndex(where: { $0.name == name }) {
-            workouts[index].exercises.removeAll { $0.id == exercise.id }
+            workouts[index].exercises.removeAll { $0 == exercise }
             if workouts[index].exercises.isEmpty {
                 workouts.remove(at: index)
             }
@@ -65,12 +50,7 @@ class WorkoutData: ObservableObject {
 struct NamedWorkout: Identifiable, Codable {
     var id = UUID()
     var name: String
-    var exercises: [Exercise]
+    var exercises: [String]
 }
-/*struct ExerciseType: Identifiable, Codable {
-    var id = UUID()
-    var name: String
-    var description: String
-}*/
 
 
