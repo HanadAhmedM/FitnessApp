@@ -1,21 +1,21 @@
 import SwiftUI
 
-
 struct CalendarPage: View {
     @State private var selectedDay: String? = ""
     @State private var selectedExerciseToday: String = ""
     @State private var workouts: [Exercise] = []
     @State private var selectedButton: String = "Workout"
+    @State private var navigateToWorkoutsView = false
     @EnvironmentObject var workoutData: WorkoutData
-    
+    private var exerciseDay: String? = ""
     let weekDays = ["M", "T", "W", "Th", "F", "S", "Su"]
-    
+
     var body: some View {
         NavigationView {
             ZStack {
                 Color(red: 27/255, green: 178/255, blue: 115/255)
                     .ignoresSafeArea()
-                
+
                 VStack(spacing: 0) {
                     VStack(spacing: 0) {
                         HStack {
@@ -30,71 +30,98 @@ struct CalendarPage: View {
                                 .padding(.trailing, 20)
                         }
                         .padding(.top, 50)
-                        
+
                         Text("Plan Type Per Week")
                             .foregroundColor(.white)
                             .padding(.bottom, 10)
                             .bold()
                     }
                     .background(Color(red: 27/255, green: 178/255, blue: 115/255))
-                   
+
                     VStack {
                         HStack {
                             ForEach(weekDays, id: \.self) { day in
-                                Text(day)
-                                    .frame(width: 45, height: 30)
-                                    .background(selectedDay == day ? Color.green : Color.clear)
-                                    .cornerRadius(15)
-                                    .onTapGesture {
-                                        self.selectedDay = day
-                                        self.selectedExerciseToday = day // Update selectedExerciseToday when day changes
-                                        fetchData(for: selectedExerciseToday) // Fetch exercises for the selected day
-                                    }
+                                Button(action: {
+                                    selectedDay = day
+                                    selectedExerciseToday = day
+                                   
+                                }) {
+                                    Text(day)
+                                        .frame(width: 45, height: 30)
+                                        .foregroundColor(.black)
+                                        .font(.headline)
+                                        .background(selectedDay == day ? Color.green : Color.clear)
+                                        .cornerRadius(15)
+                                }
                             }
                         }
                         .padding(.top, 10)
-                        
-                        HStack {
-                            NavigationLink(
-                                destination: WorkoutsView(selectedDay: $selectedDay)) {
-                                    Text("Workout")
-                                        .foregroundColor(.black)
-                                        .padding()
-                                        .frame(width: 150, height: 40)
-                                        .background(selectedButton == "Workout" ? Color.green : Color(red: 226/255, green: 234/255, blue: 226/255))
-                                        .cornerRadius(20.0)
-                            }
 
+                        HStack {
+                            Button(action: {
+                                selectedButton = "Workout"
+                                navigateToWorkoutsView = true
+                            }) {
+                                Text("Workout")
+                                    .foregroundColor(.black)
+                                    .padding()
+                                    .frame(width: 150, height: 40)
+                                    .background(selectedButton == "Workout" ? Color.green : Color(red: 226/255, green: 234/255, blue: 226/255))
+                                    .cornerRadius(20.0)
+                            }
+                            .background(
+                                NavigationLink(destination: WorkoutsView(selectedDay: $selectedDay)
+                                    .environmentObject(workoutData), isActive: $navigateToWorkoutsView) {
+                                    EmptyView()
+                                }
+                            )
+
+                            Button(action: {
+                                selectedButton = "Food"
+                            }) {
+                                Text("Food")
+                                    .foregroundColor(.black)
+                                    .padding()
+                                    .frame(width: 150, height: 40)
+                                    .background(selectedButton == "Food" ? Color.green : Color(red: 226/255, green: 234/255, blue: 226/255))
+                                    .cornerRadius(20.0)
+                            }
                         }
                         .padding(.vertical, 10)
-                        
-                        VStack(alignment: .leading) {
-                            if let exercises = workoutData.selectedExercises[selectedExerciseToday] {
-                                ForEach(exercises) { exercise in
-                                    VStack(alignment: .leading) {
-                                        HStack{
-                                            
-                                            Image(exercise.name)
-                                                .resizable()
-                                                .frame(width: 70, height: 70)
-                                            HStack{
-                                                
-                                            }
-                                            Text(exercise.name)
-                                            
-                                                .background(Color.white)
-                                                .cornerRadius(10)
-                                                .padding(.horizontal, 5)
-                                                .onTapGesture {
-                                                        self.selectedExerciseToday = exercise.name // Update selectedExerciseToday when exercise is tapped
-                                                        fetchData(for: exercise.name) // Fetch exercises for the selected exercise
+
+                        if selectedButton == "Workout" {
+                            VStack(alignment: .leading) {
+                                
+                                Spacer()
+                                
+                                ScrollView {
+                                    if let exercises = workoutData.selectedExercises[selectedExerciseToday], !exercises.isEmpty {
+                                        ForEach(exercises) { exercise in
+                                            VStack(alignment: .leading) {
+                                                HStack(spacing: 50) {
+                                                    Image(exercise.name)
+                                                        .resizable()
+                                                        .frame(width: 100, height: 100)
+                                                    VStack {
+                                                        Text(exercise.name)
+                                                            .font(.title)
+                                                            .padding(.bottom, 2)
+                                                            .padding(.horizontal, -10)
+                                                            .foregroundColor(.black)
+                                                            .onAppear(){
+                                                                if let selectedDay = selectedDay {
+                                                                    updateExerciseDay(exerciseName:exercise.name)
+                                                                }
+                                                            }
+                                                        Text(fullDayName(from: selectedDay))
+                                                            .font(.title2)
+                                                            .foregroundColor(.gray)
+                                                            .padding(.bottom, 5)
                                                     }
-                                        }
-                                        .frame(height: 70)
-                                  
-                                        NavigationView{
-                                            VStack {
-                                                List($workouts, id: \.id) { $exercise in
+                                                }
+                                                .frame(height: 70)
+                                                
+                                                List(workouts, id: \.id) { exercise in
                                                     NavigationLink(destination: ExerciseDetailView(exercise: exercise)) {
                                                         HStack(spacing: 20) {
                                                             AsyncImage(url: URL(string: exercise.gifUrl)) { image in
@@ -112,29 +139,52 @@ struct CalendarPage: View {
                                                                 .foregroundColor(Color.black)
                                                                 .frame(maxWidth: .infinity)
                                                         }
-                                                    }.background(Color(hex: "E2EAE2"))
-                                                        .frame(width: 300,height: 100)
+                                                        .background(Color(hex: "E2EAE2"))
+                                                        .frame(width: 300, height: 100)
                                                         .cornerRadius(10)
+                                                    }
                                                 }
-                                                
                                                 .listStyle(PlainListStyle())
-                                                
-                                                .frame(width: 300, height: 200, alignment: .center)
+                                                .frame(width: 300, height: 5000, alignment: .center)
                                             }
-                                         
                                         }
-                                           
-                                       
-                                        .padding(.horizontal, 10)
+                                    } else {
+                                        Text("No workout chosen")
+                                            .foregroundColor(.gray)
+                                            .italic()
+                                            .padding(.top, 20)
                                     }
-                                    .padding(.vertical, 5) // Add vertical padding between exercises
                                 }
-                            } else {
-                                Text("No exercises for this day")
-                                    .foregroundColor(.gray)
+                                }
+                        } else if selectedButton == "Food" {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Image(systemName: "fork.knife.circle")
+                                        .resizable()
+                                        .frame(width: 70, height: 70)
+                                        .padding(.leading, -90)
+                                    VStack {
+                                        Text("Food")
+                                            .font(.title)
+                                            .padding(.bottom, 2)
+                                            .padding(.horizontal, -40)
+                                            .foregroundColor(.black)
+
+                                        Text(fullDayName(from: selectedDay))
+                                            .font(.title2)
+                                            .foregroundColor(.gray)
+                                            .padding(.bottom, 5)
+                                    }
+                                }
+                                ScrollView {
+                                    Text("No chosen food") // Replace with actual food data
+                                        .foregroundColor(.gray)
+                                        .italic()
+                                        .padding(.top, 20)
+                                }
                             }
-                        }.frame(height: 500)
-                        .padding(.horizontal, 20)
+                            .padding(.horizontal, 20)
+                        }
                     }
                     .background(Color.white)
                     .cornerRadius(20)
@@ -145,7 +195,6 @@ struct CalendarPage: View {
             }
         }
     }
-    
     func fetchData(for exerciseName: String) {
         WorkoutAPI().fetchExercises(for: exerciseName) { result in
             DispatchQueue.main.async {
@@ -154,10 +203,27 @@ struct CalendarPage: View {
                     self.workouts = workouts
                 case .failure(let error):
                     print("Error fetching data:", error)
-                    // Handle error if needed
                 }
             }
         }
+    }
+
+    func fullDayName(from abbreviation: String?) -> String {
+        guard let abbreviation = abbreviation else { return "" }
+        switch abbreviation {
+        case "M": return "Monday"
+        case "T": return "Tuesday"
+        case "W": return "Wednesday"
+        case "Th": return "Thursday"
+        case "F": return "Friday"
+        case "S": return "Saturday"
+        case "Su": return "Sunday"
+        default: return ""
+        }
+    }
+    func updateExerciseDay(exerciseName: String) {
+        self.fetchData(for: exerciseName)
+        print("Uddated Exercise")
     }
 }
 

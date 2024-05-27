@@ -5,19 +5,23 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var workoutData: WorkoutData
     
+    @State private var navigateToLogin = false // State variable to handle navigation to login page
+    
     var body: some View {
         NavigationView {
             ZStack {
                 Color(red: 27/255, green: 178/255, blue: 115/255).ignoresSafeArea()
                 VStack {
+                    
                     ProfileHeaderView()
                     ProfileWorkoutList()
+                    
+                    
+                    
                     Spacer()
-                }
-            }
-        }
-    }
-}
+                }}}}}
+                   
+
 
 // Define ProfileHeaderView
 struct ProfileHeaderView: View {
@@ -97,10 +101,10 @@ struct ProfileWorkoutView: View {
     }
     
     private func deleteWorkout() {
-           // Delete the entire workout for the day
-           workoutData.selectedExercises.removeValue(forKey: day)
-           workoutData.saveWorkouts()
-       }
+        // Delete the entire workout for the day
+        workoutData.selectedExercises.removeValue(forKey: day)
+        workoutData.saveWorkouts()
+    }
 }
 
 // Define ProfileView_Previews

@@ -106,6 +106,7 @@ struct RegisterPage: View {
                         }
                         .padding(.top, 40)
                         .padding(.bottom, 80)
+                        
                     }
                     .frame(width: 390, height: 550)
                     .padding(.top, 50)
