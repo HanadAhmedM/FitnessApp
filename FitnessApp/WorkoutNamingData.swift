@@ -1,18 +1,10 @@
-//
-//  WorkoutNamingData.swift
-//  FitnessApp
-//
-//  Created by Elin.Andersson on 2024-05-21.
-//
-//en vy där användaren kan namnge sin workout och lägga till övningar.
-
 import SwiftUI
 import Foundation
 
 struct WorkoutNamingView: View {
     @EnvironmentObject var workoutData: WorkoutData
-    @Binding var selectedDay: String
-    @Binding var selectedExercise: Exercise?
+    @Binding var selectedDay: String?
+    @Binding var selectedExercise: String?
     @State private var workoutName: String = ""
     @State private var showingAlert = false
     
@@ -27,7 +19,7 @@ struct WorkoutNamingView: View {
             if let exercise = selectedExercise {
                 Button(action: {
                     if !workoutName.isEmpty {
-                        workoutData.addExercise(exercise, to: selectedDay, name: workoutName)
+                        workoutData.addExercise(exercise, to: selectedDay ?? "", name: workoutName)
                         showingAlert = true
                         selectedExercise = nil
                     }
@@ -57,22 +49,20 @@ struct WorkoutNamingView: View {
         .navigationTitle("Name Your Workout")
         .padding()
         .onAppear {
-            if let exercise = selectedExercise {
-                workoutName = "\(exercise.name) Workout"
+            if let exerciseName = selectedExercise {
+                workoutName = "\(exerciseName) Workout"
             }
         }
     }
 }
 
 struct WorkoutNamingView_Previews: PreviewProvider {
-    @State static var selectedDay = "M"
-    @State static var selectedExercise: Exercise? = nil
-
+    @State static var selectedDay: String? = "M" // Make selectedDay an optional string
+    
     static var previews: some View {
         WorkoutNamingView(
-            selectedDay: $selectedDay,
-            selectedExercise: $selectedExercise
+            selectedDay: $selectedDay, // Pass the optional binding
+            selectedExercise: .constant(nil) // Use constant binding for selectedExercise
         ).environmentObject(WorkoutData())
     }
 }
-
