@@ -10,10 +10,20 @@ import Foundation
 import SwiftUI
 
 struct PlanView: View {
-    init() {
+    @Binding var isLoggedIn: Bool // Binding for log out
+
+        init(isLoggedIn: Binding<Bool>) { // Ensure initializer accepts the binding
+            self._isLoggedIn = isLoggedIn
+            // Set the background color of the tab bar to white
+            UITabBar.appearance().backgroundColor = UIColor.white
+        }
+
+    
+    
+   // init() {
         // Set the background color of the tab bar to white
-        UITabBar.appearance().backgroundColor = UIColor.white
-    }
+     //   UITabBar.appearance().backgroundColor = UIColor.white
+  //  }
 
     var body: some View {
         // TabView to create a tab bar interface
@@ -21,25 +31,25 @@ struct PlanView: View {
             // First tab: CalendarPage
             CalendarPage()
                 .tabItem {
-                    Image(systemName: "calendar") // Icon for the tab
-                    Text("Plan") // Text label for the tab
+                    Image(systemName: "calendar")
+                    Text("Plan")
                 }
-            // Second tab: WorkoutsView with a default selected day
-            WorkoutsView(selectedDay: .constant("")) // Temporary default value for selected day
+        
+            WorkoutsView(selectedDay: .constant(""))
                 .tabItem {
-                    Image(systemName: "dumbbell") // Icon for the tab
-                    Text("Workout") // Text label for the tab
+                    Image(systemName: "dumbbell")
+                    Text("Workout")
                 }
-              RecepiesView(selectedDay: .constant("")) // Temporary default value for selected day
+              RecepiesView(selectedDay: .constant(""))
               .tabItem {
-                         Image(systemName: "fork.knife") // Icon for the tab (use appropriate system image)
-                         Text("Food") // Text label for the tab
+                         Image(systemName: "fork.knife")
+                         Text("Food")
                         }
-            // Fourth tab: ProfileView
-            ProfileView()
+           
+            ProfileView(isLoggedIn: $isLoggedIn) //binding for log out
                 .tabItem {
-                    Image(systemName: "person") // Icon for the tab
-                    Text("Profile") // Text label for the tab
+                    Image(systemName: "person")
+                    Text("Profile")
                 }
         }
         // Set the accent color for the tab bar items
@@ -48,8 +58,10 @@ struct PlanView: View {
 }
 
 struct PlanView_Previews: PreviewProvider {
+    @State static var isLoggedIn = true
+
     static var previews: some View {
         // Provide WorkoutData environment object for preview
-        PlanView().environmentObject(WorkoutData())
+        PlanView(isLoggedIn: $isLoggedIn).environmentObject(WorkoutData())
     }
 }
