@@ -63,8 +63,8 @@ struct CalendarPage: View {
                                         .frame(width: 150, height: 40)
                                         .background(selectedButton == "Workout" ? Color.green : Color(red: 226/255, green: 234/255, blue: 226/255))
                                         .cornerRadius(20.0)
-                            }
-
+                                }
+                            
                         }
                         .padding(.vertical, 10)
                         
