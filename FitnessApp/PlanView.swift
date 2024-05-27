@@ -25,16 +25,16 @@ struct PlanView: View {
                     Text("Plan") // Text label for the tab
                 }
             // Second tab: WorkoutsView with a default selected day
-            WorkoutsView(selectedDay: .constant("M")) // Temporary default value for selected day
+            WorkoutsView(selectedDay: .constant("")) // Temporary default value for selected day
                 .tabItem {
                     Image(systemName: "dumbbell") // Icon for the tab
                     Text("Workout") // Text label for the tab
                 }
-            RecepiesView(selectedDay: .constant("M")) // Temporary default value for selected day
-                    .tabItem {
-                    Image(systemName: "fork.knife") // Icon for the tab (use appropriate system image)
-                    Text("Food") // Text label for the tab
-                 }
+              RecepiesView(selectedDay: .constant("")) // Temporary default value for selected day
+              .tabItem {
+                         Image(systemName: "fork.knife") // Icon for the tab (use appropriate system image)
+                         Text("Food") // Text label for the tab
+                        }
             // Fourth tab: ProfileView
             ProfileView()
                 .tabItem {
