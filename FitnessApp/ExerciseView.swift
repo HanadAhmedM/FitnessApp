@@ -41,7 +41,7 @@ struct ExerciseView: View {
                 }
                 
                 .listStyle(PlainListStyle())
-                .navigationTitle("Exercises")
+                
                 .onAppear {
                     fetchData()
                 }

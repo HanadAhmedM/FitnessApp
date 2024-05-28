@@ -149,10 +149,39 @@ struct CalendarPage: View {
                                             }
                                         }
                                     } else {
-                                        Text("No workout chosen")
-                                            .foregroundColor(.gray)
-                                            .italic()
-                                            .padding(.top, 20)
+                                        VStack(alignment: .leading) {
+                                            HStack {
+                                                Image(systemName: "figure")
+                                                    .resizable()
+                                                    .frame(width: 70, height: 70)
+                                                    .padding(.leading, 1)
+                                                VStack{
+                                                Text("Exercise")
+                                                    .font(.title)
+                                                    .padding(.bottom, 2)
+                                                  
+                                                    .foregroundColor(.black)
+                                                
+                                  
+                                                    Text(fullDayName(from: selectedDay))
+                                                        .font(.title2)
+                                                        .foregroundColor(.gray)
+                                                        .padding(.bottom, 10)
+                                                }
+                                                
+                                            }
+                                            Spacer()
+                                            ScrollView{
+                                                Text("No workout chosen")
+                                                    .foregroundColor(.gray)
+                                                    .italic()
+                                                    .padding(.top, 20)
+                                            }
+                                            
+                                        }
+                                        
+                                      
+                                        
                                     }
                                 }
                                 }
@@ -167,7 +196,7 @@ struct CalendarPage: View {
                                         Text("Food")
                                             .font(.title)
                                             .padding(.bottom, 2)
-                                            .padding(.horizontal, -40)
+                                            .padding(.horizontal, -20)
                                             .foregroundColor(.black)
 
                                         Text(fullDayName(from: selectedDay))

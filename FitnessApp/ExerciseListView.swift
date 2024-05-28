@@ -12,34 +12,37 @@ struct ExercisesListView: View {
         NavigationView {
             List {
                 ForEach(bodyParts, id: \.self) { bodyPart in
-                    HStack(spacing: 20) {
-                        Image(bodyPart)
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .background(Color(hex: "E2EAE2"))
-                            .cornerRadius(8)
-                        
-                        Text(bodyPart)
-                            .font(.system(size: 17, weight: .bold))
-                            .foregroundColor(Color.black)
-                            .frame(maxWidth: .infinity) // Dynamically adjusts width based on content
-                        
-                        Spacer()
-                        
-                        if let selectedDay = selectedDay, !selectedDay.isEmpty {
-                            Button(action: {
-                                workoutData.addExercise(bodyPart, to: selectedDay, name: bodyPart)
-                                presentationMode.wrappedValue.dismiss() // Dismiss the view and go back
-                            }) {
-                                Image("PlusK")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(Color.blue)
-                                    .padding(7)
+                    NavigationLink(destination: ExerciseView(bodyPart: .constant(bodyPart))) {
+                        HStack(spacing: 20) {
+                            Image(bodyPart)
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .background(Color(hex: "E2EAE2"))
+                                .cornerRadius(8)
+                            
+                            Text(bodyPart)
+                                .font(.system(size: 17, weight: .bold))
+                                .foregroundColor(Color.black)
+                                .frame(maxWidth: .infinity) // Dynamically adjusts width based on content
+                            
+                            Spacer()
+                            
+                            if let selectedDay = selectedDay, !selectedDay.isEmpty {
+                                Button(action: {
+                                    workoutData.addExercise(bodyPart, to: selectedDay, name: bodyPart)
+                                 
+                                }) {
+                                    Image("PlusK")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                        .foregroundColor(Color.blue)
+                                        .padding(7)
+                                }
+                                .buttonStyle(PlainButtonStyle())
                             }
-                            .buttonStyle(PlainButtonStyle())
                         }
                     }
+                 
                 }
                 .background(Color(hex: "E2EAE2"))
                 .padding(.leading,10)
@@ -85,7 +88,7 @@ extension Color {
 }
 
 struct ExercisesListView_Previews: PreviewProvider {
-    @State static var selectedDay: String? = "M"
+    @State static var selectedDay: String? = ""
     @State static var selectedExercise: String? = ""
 
     static var previews: some View {
