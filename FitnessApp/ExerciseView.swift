@@ -65,7 +65,7 @@ struct ExerciseView: View {
               }
 
 
-    struct ExerciseDetailView: View {
+   /*struct ExerciseDetailView: View {
         let exercise: Exercise
         
         var body: some View {
@@ -89,7 +89,66 @@ struct ExerciseView: View {
             }
             .navigationTitle(exercise.name)
         }
+    }*/
+
+
+struct ExerciseDetailView: View {
+    let exercise: Exercise
+
+    var body: some View {
+        ScrollView {
+            VStack {
+                Text("Exercise Detail")
+                    .font(.system(size: 24, weight: .bold))
+                    .padding(.top, 20)
+                    .foregroundColor(.black)
+                
+                VStack {
+                    AsyncImage(url: URL(string: exercise.gifUrl)) { image in
+                        image.resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
+                            .background(Color(hex: "E2EAE2"))
+                            .cornerRadius(8)
+                    } placeholder: {
+                        Image(systemName: "photo")
+                            .frame(height: 200)
+                    }
+                    .padding()
+
+                    Text(exercise.name)
+                        .font(.title)
+                        .padding()
+
+                    Text("Instructions:")
+                        .font(.headline)
+                        .padding(.vertical)
+
+                    ForEach(Array(exercise.instructions.enumerated()), id: \.offset) { index, instruction in
+                        HStack(alignment: .top) {
+                            Text("\(index + 1).")
+                                .fontWeight(.bold)
+                            Text(instruction)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .padding()
+                        .background(Color(hex: "E2EAE2"))
+                        .cornerRadius(8)
+                        .padding(.vertical, 4)
+                    }
+                    
+                    Spacer()
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(30)
+                .padding()
+            }
+        }
+        .navigationTitle(exercise.name)
     }
+}
+
       
 #Preview {
  ExerciseView(bodyPart: .constant("back"))
