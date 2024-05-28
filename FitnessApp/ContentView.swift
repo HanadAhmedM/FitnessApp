@@ -14,7 +14,7 @@ struct ContentView: View {
            NavigationView {
                VStack {
                    if isLoggedIn {
-                       PlanView()
+                       PlanView(isLoggedIn: $isLoggedIn) 
                    } else {
                        LoginPage(isLoggedIn: $isLoggedIn)
                    }
