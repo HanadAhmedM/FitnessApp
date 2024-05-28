@@ -9,15 +9,16 @@ import SwiftUI
 import Firebase
 @main
 struct FitnessAppApp: App {
-    // register app delegate for Firebase setup
-        @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+@UIApplicationDelegateAdaptor(AppDelegate.self) var delegate // register app delegate for Firebase setup
     @StateObject private var workoutData = WorkoutData()
+    @StateObject private var userData = UserData()
     @State private var isLoggedIn = false
     
     var body: some Scene {
         WindowGroup {
-           ContentView()
+           ContentView(isLoggedIn: $isLoggedIn)
                 .environmentObject(WorkoutData())
+                .environmentObject(userData)
         }
     }
 }

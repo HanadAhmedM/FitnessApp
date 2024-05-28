@@ -3,6 +3,7 @@ import FirebaseAuth
 
 struct LoginPage: View {
     @Binding var isLoggedIn: Bool
+    @EnvironmentObject var userData: UserData
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showAlert = false
@@ -21,7 +22,7 @@ struct LoginPage: View {
                     Spacer()
                     VStack{
                         
-                           
+                        
                         // Title
                         Text("Login to your account ")
                         
@@ -93,16 +94,16 @@ struct LoginPage: View {
                         .background(Color(red: 226/255, green: 234/255, blue: 226/255))
                         .cornerRadius(30)
                     }.background(Color(hex: "F2F2F2"))
-                   
                     
-                   
+                    
+                    
                 }
                 
             }
             
         }.ignoresSafeArea() // Extend background color to edges of screen
     }
-              
+    
     func login() {
         if password.isEmpty || email.isEmpty {
             showAlert = true
@@ -113,18 +114,33 @@ struct LoginPage: View {
                     showAlert = true
                     alertMessage = "Login failed. Please check your credentials."
                 } else {
-                    isLoggedIn = true
+                    // isLoggedIn = true
+                    //After a successful login, fetch the user data and update the UserData environment object:
+                    if let userId = Auth.auth().currentUser?.uid {
+                        // Fetch user data
+                        FireBase().fetchUser(userId: userId) { user in
+                            if let user = user {
+                                // Update the environment object
+                                userData.user = user 
+                                isLoggedIn = true
+                            } else {
+                                showAlert = true
+                                alertMessage = "Failed to fetch user data."
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 }
-        
+
 
 struct LoginPage_Previews: PreviewProvider {
     @State static var isLoggedIn = false
-
+    
     static var previews: some View {
         LoginPage(isLoggedIn: $isLoggedIn)
+            .environmentObject(UserData())
     }
 }

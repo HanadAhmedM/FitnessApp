@@ -11,6 +11,7 @@ import SwiftUI
 
 struct PlanView: View {
     @Binding var isLoggedIn: Bool // Binding for log out
+    @EnvironmentObject var userData: UserData // UserData environment object must be provided to all necessary views.
 
         init(isLoggedIn: Binding<Bool>) { // Ensure initializer accepts the binding
             self._isLoggedIn = isLoggedIn
@@ -62,6 +63,8 @@ struct PlanView_Previews: PreviewProvider {
 
     static var previews: some View {
         // Provide WorkoutData environment object for preview
-        PlanView(isLoggedIn: $isLoggedIn).environmentObject(WorkoutData())
+        PlanView(isLoggedIn: $isLoggedIn)
+            .environmentObject(WorkoutData())
+            .environmentObject(UserData())
     }
 }
