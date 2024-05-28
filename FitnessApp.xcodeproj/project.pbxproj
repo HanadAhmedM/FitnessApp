@@ -54,6 +54,7 @@
 		D2CB08CC2BF26A23008C26FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CB08CB2BF26A23008C26FF /* GoogleService-Info.plist */; };
 		D2CB08F72BF2B223008C26FF /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB08F62BF2B223008C26FF /* ExerciseView.swift */; };
 		D2CB08F92BF2B237008C26FF /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB08F82BF2B237008C26FF /* ExerciseListView.swift */; };
+		D2F93D892C0633DB00C29E72 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F93D882C0633DB00C29E72 /* UserData.swift */; };
 		DCC427F72BFB9A6B0035CB86 /* FoodApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC427F62BFB9A6B0035CB86 /* FoodApiService.swift */; };
 		DCC427FA2BFB9A940035CB86 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC427F92BFB9A940035CB86 /* SearchViewModel.swift */; };
 		DCC427FD2BFB9AB10035CB86 /* RecepieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC427FC2BFB9AB10035CB86 /* RecepieViewModel.swift */; };
@@ -89,6 +90,7 @@
 		D2CB08CB2BF26A23008C26FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D2CB08F62BF2B223008C26FF /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		D2CB08F82BF2B237008C26FF /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
+		D2F93D882C0633DB00C29E72 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		DCC427F62BFB9A6B0035CB86 /* FoodApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodApiService.swift; sourceTree = "<group>"; };
 		DCC427F92BFB9A940035CB86 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		DCC427FC2BFB9AB10035CB86 /* RecepieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepieViewModel.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				858BA5B22BE3C44C0032E3A9 /* Assets.xcassets */,
 				858BA5B42BE3C44C0032E3A9 /* Preview Content */,
 				858BA5BC2BE3CE580032E3A9 /* LoginPage.swift */,
+				D2F93D882C0633DB00C29E72 /* UserData.swift */,
 				858BA5BE2BE8BBD60032E3A9 /* RegisterPage.swift */,
 				D223D7332BFC72B90087C859 /* CalendarPage.swift */,
 				D223D7352BFC72DF0087C859 /* PlanView.swift */,
@@ -342,6 +345,7 @@
 				858BA5AF2BE3C4470032E3A9 /* FitnessAppApp.swift in Sources */,
 				D223D73A2BFC74C70087C859 /* WorkoutsView.swift in Sources */,
 				D223D7402BFC78CC0087C859 /* MenuBar.swift in Sources */,
+				D2F93D892C0633DB00C29E72 /* UserData.swift in Sources */,
 				D2CB08F92BF2B237008C26FF /* ExerciseListView.swift in Sources */,
 				D223D7382BFC73290087C859 /* ProfileView.swift in Sources */,
 				D223D7422BFF55710087C859 /* WorkoutsChooseExerciseView.swift in Sources */,

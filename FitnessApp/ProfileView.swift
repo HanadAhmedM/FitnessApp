@@ -2,16 +2,18 @@ import SwiftUI
 import FirebaseAuth
 
 struct ProfileView: View {
+    @EnvironmentObject var userData: UserData
     @EnvironmentObject var workoutData: WorkoutData
     @Binding var isLoggedIn: Bool // Binding to handle logged-in status
+  
 
     var body: some View {
         NavigationView {
             ZStack {
                 Color(red: 27/255, green: 178/255, blue: 115/255).ignoresSafeArea()
                 VStack {
-                    ProfileHeaderView()
-                    ProfileWorkoutList()
+                    ProfileHeaderView(user: userData.user)
+                   // ProfileWorkoutList()
                     Spacer()
                     LogoutButton(isLoggedIn: $isLoggedIn) // Add LogoutButton
                 }
@@ -20,12 +22,25 @@ struct ProfileView: View {
     }
 }
 
-// Define ProfileHeaderView
+//Display the user's username and email in the profile view:
 struct ProfileHeaderView: View {
+    let user: User?
+
     var body: some View {
-        Text("Profile")
-            .font(.system(size: 24, weight: .bold))
-            .padding(.top, 20)
+        VStack {
+            if let user = user {
+                Text(user.userName)
+                    .font(.system(size: 24, weight: .bold))
+                    .padding(.top, 20)
+                Text(user.email)
+                    .font(.system(size: 18))
+                    .padding(.top, 10)
+            } else {
+                Text("Loading...")
+                    .font(.system(size: 24, weight: .bold))
+                    .padding(.top, 20)
+            }
+        }
     }
 }
 
@@ -141,4 +156,3 @@ struct ProfileView_Previews: PreviewProvider {
             .environmentObject(WorkoutData())
     }
 }
-
