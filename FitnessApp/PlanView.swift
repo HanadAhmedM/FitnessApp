@@ -41,11 +41,11 @@ struct PlanView: View {
                     Image(systemName: "dumbbell")
                     Text("Workout")
                 }
-              RecepiesView(selectedDay: .constant(""))
-              .tabItem {
-                         Image(systemName: "fork.knife")
-                         Text("Food")
-                        }
+            RecepiesView()
+                .tabItem {
+                    Image(systemName: "fork.knife")
+                    Text("Food")
+                }
            
             ProfileView(isLoggedIn: $isLoggedIn) //binding for log out
                 .tabItem {

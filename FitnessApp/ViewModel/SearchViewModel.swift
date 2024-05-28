@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 import Firebase
 
 class SearchViewModel: ObservableObject{
+    
     let db = Firestore.firestore()
     // Published property to hold an array of ReceptBasic objects
     @Published var currentRecepies: [ReceptBasic] = []
@@ -29,22 +30,25 @@ class SearchViewModel: ObservableObject{
     // Method to fetch a single recipe by its ID
     func getRecepie(theId: Int){
         FoodApiService.shared.getRecepie(id: theId, completion: { recepie in
-            DispatchQueue.main.async{
+            DispatchQueue.main.async {
+                print("recepie from Api title: \(recepie.title)")
                 self.currentRecepie = recepie
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01){//p.ga syncnings problem behövde jag
+                self.currentRecepie.title = recepie.title
+                print("changer in vm: \(self.changer), title: \(self.currentRecepie.title)")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5){//p.ga syncnings problem behövde jag
                     self.changer = "uIUpdgggate"
+                    self.currentRecepie.title = recepie.title
+                    print("changer in vm after: \(self.changer), title: \(self.currentRecepie.title)")
                 }
             }
         })
     }
     
     // Method to fetch a single recipe synchronously by its ID
-    func getRecepieInCode(theId: Int) -> ReceptFull{
-        var receptFull: ReceptFull = ReceptFull()
+    func getRecepieInCode(theId: Int, resultRecepie: @escaping (ReceptFull) -> ()){
         FoodApiService.shared.getRecepie(id: theId, completion: { recepie in
-            receptFull = recepie
+            resultRecepie(recepie)
         })
-        return receptFull
     }
     func recepieToData(recepie: ReceptBasic) -> [String: Any]{
         return [

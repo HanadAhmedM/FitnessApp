@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 import Firebase
 
 
-class RecepieViewModel: ObservableObject{
+class RecipeViewModel: ObservableObject{
     let db = Firestore.firestore()
     
     func recepieToData(recepie: ReceptBasic) -> [String: Any]{//so I dont write this code many times for no reason
@@ -22,8 +22,9 @@ class RecepieViewModel: ObservableObject{
             "imageType" : recepie.imageType
         ]
     }
-    func getLists(result: @escaping ([String]) -> ()){//gets the lists
-        db.collection("recepies").getDocuments(completion: { querySnapshot, error in
+    func getLists(user: String ,result: @escaping ([String]) -> ()){//gets the lists
+        db.document("recepies/\(user)")
+            .collection("lists").getDocuments(completion: { querySnapshot, error in
             if let error = error{
                 print("error getting lists: \(error)")
                 return
@@ -37,8 +38,10 @@ class RecepieViewModel: ObservableObject{
             result(tempLists)
         })
     }
-    func addList(listToAdd: String, result: @escaping (Bool) -> ()){//adds a list
-        db.document("recepies/\(listToAdd)")
+    func addList(user: String ,listToAdd: String, result: @escaping (Bool) -> ()){//adds a list
+        db.document("recepies/\(user)")
+            .collection("lists")
+            .document(listToAdd)
             .setData(["listName" : listToAdd]){error in//this gets used later when getting the lists
                 if let error = error{
                     print("Error adding list: \(error)")
@@ -49,8 +52,10 @@ class RecepieViewModel: ObservableObject{
                 print("success adding list")
             }
     }
-    func getListRecepies(listName: String, result: @escaping ([ReceptBasic]) -> ()){// gets the recepies in a list
-        db.document("recepies/\(listName)")
+    func getListRecepies(user: String ,listName: String, result: @escaping ([ReceptBasic]) -> ()){// gets the recepies in a list
+        db.document("recepies/\(user)")
+            .collection("lists")
+            .document(listName)
             .collection("theRecepies")
             .getDocuments(completion: { querySnapshot, error in
                 if let error = error{
@@ -73,8 +78,10 @@ class RecepieViewModel: ObservableObject{
         let parts = image.components(separatedBy: "-")
         return parts[0] + "-90x90." + imageType
     }
-    func saveRecepieTo(list: String, recepie: ReceptBasic, result: @escaping (Bool) -> ()){//saves a recipe to a list
-        db.document("recepies/\(list)")
+    func saveRecepieTo(user: String, list: String, recepie: ReceptBasic, result: @escaping (Bool) -> ()){//saves a recipe to a list
+        db.document("recepies/\(user)")
+            .collection("lists")
+            .document(list)
             .collection("theRecepies")
             .document(String(recepie.id))//by having the recipe id as document id, one avoids many copies of the same recipe
             .setData(recepieToData(recepie: recepie)){error in
@@ -85,6 +92,23 @@ class RecepieViewModel: ObservableObject{
                 }
                 result(true)
                 print("success adding recepie to list")
+
+            }
+    }
+    func deleteRecepie(user: String, list: String, recepie: ReceptBasic, result: @escaping (Bool) -> ()){
+        db.document("recepies/\(user)")
+            .collection("lists")
+            .document(list)
+            .collection("theRecepies")
+            .document(String(recepie.id))
+            .delete(){ error in
+                if let error = error{
+                    result(false)
+                    print("Error deleting recepie from list: \(error)")
+                    return
+                }
+                result(true)
+                print("success deleting recepie from list")
 
             }
     }

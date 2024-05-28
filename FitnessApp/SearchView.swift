@@ -12,15 +12,16 @@ struct SearchView: View {
     @State var items: [String: String] = [:]//These "query-value" items get used later on in the URL
     @ObservedObject var vm = SearchViewModel()
     @State var popUp = false//if true a pop up is shown
-    var recipeVm = RecepieViewModel()
+    var recipeVm = RecipeViewModel()
     @State var currentRecipe = ReceptBasic(anId: 0, aTitle: "", anImage: "", anImageType: "")//gets used when trying to save a recipe to a list
     @State var lists: [String] = []//on appear the lists are gotten so one can save recipes to them
     @State var selectedList = ""//gets used when trying to save a recipe to a list
     @State var feedbackText = ""
     @State var feedbackColor = Color.green
+    @State private var path = NavigationPath()
     
     var body: some View {
-        NavigationStack{
+        NavigationStack(path: $path){
             ZStack{
                 Color(red: 27/255, green: 178/255, blue: 115/255)
                     .ignoresSafeArea()
@@ -66,8 +67,23 @@ struct SearchView: View {
                         ScrollView(){
                             ForEach(vm.currentRecepies){recepie in
                                 HStack{
-                                    AsyncImage(url: URL(string: vm.makeImage100x100(image: recepie.image, imageType: recepie.imageType)))//this method takes the image url then changes it so that the image is 90x90
-                                        .padding(.leading, 10)
+                                    Button(action: {
+                                        vm.getRecepieInCode(theId: recepie.id, resultRecepie: { theRecepie in
+                                            vm.currentRecepie = theRecepie
+                                            DispatchQueue.global(qos: .background).async {//this chechs if the recepie has been updated then appends an int in the path which then makes so that the view navigates
+                                                var tempBool = false
+                                                repeat{
+                                                    if(theRecepie.id == vm.currentRecepie.id){
+                                                        path.append(1)
+                                                        tempBool = true
+                                                    }
+                                                } while(!tempBool)
+                                            }
+                                        })
+                                    }, label: {
+                                        AsyncImage(url: URL(string: vm.makeImage100x100(image: recepie.image, imageType: recepie.imageType)))//this method takes the image url then changes it so that the image is 90x90
+                                            .padding(.leading, 10)
+                                    })
 
                                     Spacer()//these spacers puts the image to the left, the text in the middle and the save button to the right.
                                         .frame(height: 0)
@@ -117,7 +133,7 @@ struct SearchView: View {
                             .foregroundStyle(.red)
                             Button("add"){
                                 if(!selectedList.isEmpty){
-                                    recipeVm.saveRecepieTo(list: selectedList, recepie: currentRecipe){result in
+                                    recipeVm.saveRecepieTo(user: "tempGuy", list: selectedList, recepie: currentRecipe){result in
                                         if(result){
                                             feedbackColor = Color.green
                                             feedbackText = "Success"
@@ -140,8 +156,13 @@ struct SearchView: View {
                     .cornerRadius(25)
                 }
             }
+            .navigationDestination(for: Int.self, destination: { navNum in
+                if(navNum == 1){
+                    RecipeView(vm: self.vm)
+                }
+            })
             .onAppear(perform: {
-                recipeVm.getLists(result: {result in
+                recipeVm.getLists(user: "tempGuy", result: {result in
                     lists = result
                 })
             })
