@@ -11,7 +11,6 @@ struct Exercise: Identifiable, Codable {
     let bodyPart: String
       let equipment: String
       let gifUrl: String
-   
       let name: String
       let target: String
       let secondaryMuscles: [String]
