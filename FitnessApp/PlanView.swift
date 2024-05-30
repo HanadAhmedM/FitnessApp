@@ -43,10 +43,14 @@ struct PlanView: View {
                 }
             RecepiesView()
                 .tabItem {
-                    Image(systemName: "fork.knife")
+                    Image(systemName: "archivebox.fill")
+                    Text("Saved recipes")
+                }
+            SearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
                     Text("Food")
                 }
-           
             ProfileView(isLoggedIn: $isLoggedIn) //binding for log out
                 .tabItem {
                     Image(systemName: "person")
