@@ -57,6 +57,9 @@
 		D2F93D892C0633DB00C29E72 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F93D882C0633DB00C29E72 /* UserData.swift */; };
 		DCABD9E22C064C7B00E79EFC /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABD9E12C064C7B00E79EFC /* RecipeView.swift */; };
 		DCABD9E42C064CA000E79EFC /* IngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABD9E32C064CA000E79EFC /* IngredientView.swift */; };
+		DCABD9E62C06520600E79EFC /* CalenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABD9E52C06520600E79EFC /* CalenderViewModel.swift */; };
+		DCABD9E82C06521F00E79EFC /* CalenderRecepie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABD9E72C06521F00E79EFC /* CalenderRecepie.swift */; };
+		DCABD9EA2C06526400E79EFC /* AddRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABD9E92C06526400E79EFC /* AddRecipeView.swift */; };
 		DCC427F72BFB9A6B0035CB86 /* FoodApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC427F62BFB9A6B0035CB86 /* FoodApiService.swift */; };
 		DCC427FA2BFB9A940035CB86 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC427F92BFB9A940035CB86 /* SearchViewModel.swift */; };
 		DCC427FD2BFB9AB10035CB86 /* RecepieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC427FC2BFB9AB10035CB86 /* RecepieViewModel.swift */; };
@@ -95,6 +98,9 @@
 		D2F93D882C0633DB00C29E72 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		DCABD9E12C064C7B00E79EFC /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		DCABD9E32C064CA000E79EFC /* IngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientView.swift; sourceTree = "<group>"; };
+		DCABD9E52C06520600E79EFC /* CalenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewModel.swift; sourceTree = "<group>"; };
+		DCABD9E72C06521F00E79EFC /* CalenderRecepie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderRecepie.swift; sourceTree = "<group>"; };
+		DCABD9E92C06526400E79EFC /* AddRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
 		DCC427F62BFB9A6B0035CB86 /* FoodApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodApiService.swift; sourceTree = "<group>"; };
 		DCC427F92BFB9A940035CB86 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		DCC427FC2BFB9AB10035CB86 /* RecepieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepieViewModel.swift; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 				85E02CC02BFDFF5D00279874 /* Exercise.swift */,
 				DCABD9E12C064C7B00E79EFC /* RecipeView.swift */,
 				DCABD9E32C064CA000E79EFC /* IngredientView.swift */,
+				DCABD9E92C06526400E79EFC /* AddRecipeView.swift */,
 			);
 			path = FitnessApp;
 			sourceTree = "<group>";
@@ -216,6 +223,7 @@
 			children = (
 				DCC427F92BFB9A940035CB86 /* SearchViewModel.swift */,
 				DCC427FC2BFB9AB10035CB86 /* RecepieViewModel.swift */,
+				DCABD9E52C06520600E79EFC /* CalenderViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -225,6 +233,7 @@
 			children = (
 				DCC427FF2BFB9ACF0035CB86 /* ReceptBasic.swift */,
 				DCC428012BFB9ADA0035CB86 /* ReceptFull.swift */,
+				DCABD9E72C06521F00E79EFC /* CalenderRecepie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -337,6 +346,7 @@
 				DCC428022BFB9ADA0035CB86 /* ReceptFull.swift in Sources */,
 				858BA5B12BE3C4470032E3A9 /* ContentView.swift in Sources */,
 				D223D7362BFC72DF0087C859 /* PlanView.swift in Sources */,
+				DCABD9E82C06521F00E79EFC /* CalenderRecepie.swift in Sources */,
 				DCC427F72BFB9A6B0035CB86 /* FoodApiService.swift in Sources */,
 				DCC427FD2BFB9AB10035CB86 /* RecepieViewModel.swift in Sources */,
 				DCC428042BFB9AF90035CB86 /* SearchView.swift in Sources */,
@@ -357,6 +367,8 @@
 				DCABD9E42C064CA000E79EFC /* IngredientView.swift in Sources */,
 				D223D7382BFC73290087C859 /* ProfileView.swift in Sources */,
 				D223D7422BFF55710087C859 /* WorkoutsChooseExerciseView.swift in Sources */,
+				DCABD9E62C06520600E79EFC /* CalenderViewModel.swift in Sources */,
+				DCABD9EA2C06526400E79EFC /* AddRecipeView.swift in Sources */,
 				DCC428082BFB9B3F0035CB86 /* FilterView.swift in Sources */,
 				DCC428062BFB9B1B0035CB86 /* RecepiesView.swift in Sources */,
 				858BA5BF2BE8BBD60032E3A9 /* RegisterPage.swift in Sources */,

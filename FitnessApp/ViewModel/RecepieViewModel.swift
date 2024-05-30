@@ -42,7 +42,7 @@ class RecipeViewModel: ObservableObject{
         db.document("recepies/\(user)")
             .collection("lists")
             .document(listToAdd)
-            .setData(["listName" : listToAdd]){error in//this gets used later when getting the lists
+            .setData(["listName" : listToAdd]){error in//this (listName) gets used later when getting the lists
                 if let error = error{
                     print("Error adding list: \(error)")
                     result(false)

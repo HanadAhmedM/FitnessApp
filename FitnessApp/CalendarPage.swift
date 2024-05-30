@@ -9,9 +9,11 @@ struct CalendarPage: View {
     @EnvironmentObject var workoutData: WorkoutData
     private var exerciseDay: String? = ""
     let weekDays = ["M", "T", "W", "Th", "F", "S", "Su"]
-
+    @ObservedObject var calenderVM = CalenderViewModel(user: "tempGuy")
+    @ObservedObject var searchVM = SearchViewModel()
+    @State var path = NavigationPath()
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             ZStack {
                 Color(red: 27/255, green: 178/255, blue: 115/255)
                     .ignoresSafeArea()
@@ -186,33 +188,198 @@ struct CalendarPage: View {
                                 }
                                 }
                         } else if selectedButton == "Food" {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Image(systemName: "fork.knife.circle")
-                                        .resizable()
-                                        .frame(width: 70, height: 70)
-                                        .padding(.leading, -90)
-                                    VStack {
-                                        Text("Food")
-                                            .font(.title)
-                                            .padding(.bottom, 2)
-                                            .padding(.horizontal, -20)
-                                            .foregroundColor(.black)
+                                VStack(alignment: .center) {
+                                    HStack {
+                                        Image(systemName: "fork.knife.circle")
+                                            .resizable()
+                                            .frame(width: 70, height: 70)
+                                            .padding(.leading, -90)
+                                        VStack {
+                                            Text("Food")
+                                                .font(.title)
+                                                .padding(.bottom, 2)
+                                                .padding(.horizontal, -20)
+                                                .foregroundColor(.black)
 
-                                        Text(fullDayName(from: selectedDay))
-                                            .font(.title2)
-                                            .foregroundColor(.gray)
-                                            .padding(.bottom, 5)
+                                            Text(fullDayName(from: selectedDay))
+                                                .font(.title2)
+                                                .foregroundColor(.gray)
+                                                .padding(.bottom, 5)
+                                        }
                                     }
-                                }
-                                ScrollView {
-                                    Text("No chosen food") // Replace with actual food data
-                                        .foregroundColor(.gray)
-                                        .italic()
-                                        .padding(.top, 20)
-                                }
+                                    ScrollView{
+                                        Text("Breakfast")
+                                            .font(.title)
+                                            .fontWeight(.bold)
+                                        ForEach(calenderVM.recepies.filter{ aRecepie in
+                                            return aRecepie.day == selectedDay && aRecepie.time == "frukost"
+                                        }){ recepie in
+                                            HStack{
+                                                Button(action: {
+                                                    searchVM.getRecepieInCode(theId: recepie.id, resultRecepie: { theRecepie in
+                                                        searchVM.currentRecepie = theRecepie
+                                                        DispatchQueue.global(qos: .background).async {//this chechs if the recepie has been updated then appends an int in the path which then makes so that the view navigates
+                                                            var tempBool = false
+                                                            repeat{
+                                                                if(theRecepie.id == searchVM.currentRecepie.id){
+                                                                    path.append(1)
+                                                                    tempBool = true
+                                                                }
+                                                            } while(!tempBool)
+                                                        }
+                                                    })
+                                                }, label: {
+                                                    AsyncImage(url: URL(string: searchVM.makeImage100x100(image: recepie.image, imageType: recepie.imageType)))//this method takes the image url then changes it so that the image is 90x90
+                                                        .padding(.leading, 10)
+                                                })
+
+                                                Spacer()//these spacers puts the image to the left, the text in the middle and the save button to the right.
+                                                    .frame(height: 0)
+                                                Text(recepie.title)
+                                                    .fontWeight(.bold)
+                                                    .frame(width: 150)
+                                                Spacer()
+                                                    .frame(height: 0)
+                                                Button(action: {
+                                                    calenderVM.deleteRecepie(aDocumentID: recepie.documentID)
+                                                }, label: {
+                                                    Image(systemName: "minus.circle")
+                                                        .scaleEffect(1.4)
+                                                        .foregroundStyle(.red)
+                                                })
+                                                .padding(.trailing, 15)
+                                            }
+
+                                        }
+                                        Button(action: {
+                                            if(!selectedDay!.isEmpty){
+                                                path.append("frukost")
+                                            }
+                                        }, label: {
+                                            ZStack{
+                                                Image(systemName: "circle")
+                                                    .scaleEffect(1.5)
+                                                    .foregroundStyle(.black)
+                                                Image(systemName: "plus")
+                                                    .foregroundStyle(.green)
+                                            }
+                                        })
+                                        Text("Lunch")
+                                            .font(.title)
+                                            .fontWeight(.bold)
+                                        
+                                        ForEach(calenderVM.recepies.filter{ aRecepie in
+                                            return aRecepie.day == selectedDay && aRecepie.time == "lunch"
+                                        }){ recepie in
+                                            HStack{
+                                                Button(action: {
+                                                    searchVM.getRecepieInCode(theId: recepie.id, resultRecepie: { theRecepie in
+                                                        searchVM.currentRecepie = theRecepie
+                                                        DispatchQueue.global(qos: .background).async {//this chechs if the recepie has been updated then appends an int in the path which then makes so that the view navigates
+                                                            var tempBool = false
+                                                            repeat{
+                                                                if(theRecepie.id == searchVM.currentRecepie.id){
+                                                                    path.append(1)
+                                                                    tempBool = true
+                                                                }
+                                                            } while(!tempBool)
+                                                        }
+                                                    })
+                                                }, label: {
+                                                    AsyncImage(url: URL(string: searchVM.makeImage100x100(image: recepie.image, imageType: recepie.imageType)))//this method takes the image url then changes it so that the image is 90x90
+                                                        .padding(.leading, 10)
+                                                })
+
+                                                Spacer()//these spacers puts the image to the left, the text in the middle and the save button to the right.
+                                                    .frame(height: 0)
+                                                Text(recepie.title)
+                                                    .fontWeight(.bold)
+                                                    .frame(width: 150)
+                                                Spacer()
+                                                    .frame(height: 0)
+                                                Button(action: {
+                                                    calenderVM.deleteRecepie(aDocumentID: recepie.documentID)
+                                                }, label: {
+                                                    Image(systemName: "minus.circle")
+                                                        .scaleEffect(1.4)
+                                                        .foregroundStyle(.red)
+                                                })
+                                                .padding(.trailing, 15)
+                                            }
+
+                                        }
+                                        Button(action: {
+                                            if(!selectedDay!.isEmpty){
+                                                path.append("lunch")
+                                            }
+                                        }, label: {
+                                            ZStack{
+                                                Image(systemName: "circle")
+                                                    .scaleEffect(1.5)
+                                                    .foregroundStyle(.black)
+                                                Image(systemName: "plus")
+                                                    .foregroundStyle(.green)
+                                            }
+                                        })
+                                        Text("Dinner")
+                                            .font(.title)
+                                            .fontWeight(.bold)
+                                        ForEach(calenderVM.recepies.filter{ aRecepie in
+                                            return aRecepie.day == selectedDay && aRecepie.time == "middag"
+                                        }){ recepie in
+                                            HStack{
+                                                Button(action: {
+                                                    searchVM.getRecepieInCode(theId: recepie.id, resultRecepie: { theRecepie in
+                                                        searchVM.currentRecepie = theRecepie
+                                                        DispatchQueue.global(qos: .background).async {//this chechs if the recepie has been updated then appends an int in the path which then makes so that the view navigates
+                                                            var tempBool = false
+                                                            repeat{
+                                                                if(theRecepie.id == searchVM.currentRecepie.id){
+                                                                    path.append(1)
+                                                                    tempBool = true
+                                                                }
+                                                            } while(!tempBool)
+                                                        }
+                                                    })
+                                                }, label: {
+                                                    AsyncImage(url: URL(string: searchVM.makeImage100x100(image: recepie.image, imageType: recepie.imageType)))//this method takes the image url then changes it so that the image is 90x90
+                                                        .padding(.leading, 10)
+                                                })
+
+                                                Spacer()//these spacers puts the image to the left, the text in the middle and the save button to the right.
+                                                    .frame(height: 0)
+                                                Text(recepie.title)
+                                                    .fontWeight(.bold)
+                                                    .frame(width: 150)
+                                                Spacer()
+                                                    .frame(height: 0)
+                                                Button(action: {
+                                                    calenderVM.deleteRecepie(aDocumentID: recepie.documentID)
+                                                }, label: {
+                                                    Image(systemName: "minus.circle")
+                                                        .scaleEffect(1.4)
+                                                        .foregroundStyle(.red)
+                                                })
+                                                .padding(.trailing, 15)
+                                            }
+
+                                        }
+
+                                        Button(action: {
+                                            if(!selectedDay!.isEmpty){
+                                                path.append("middag")
+                                            }
+                                        }, label: {
+                                            ZStack{
+                                                Image(systemName: "circle")
+                                                    .scaleEffect(1.5)
+                                                    .foregroundStyle(.black)
+                                                Image(systemName: "plus")
+                                                    .foregroundStyle(.green)
+                                            }
+                                        })
+                                    }
                             }
-                            .padding(.horizontal, 20)
                         }
                     }
                     .background(Color.white)
@@ -222,6 +389,13 @@ struct CalendarPage: View {
                 }
                 .padding(.bottom, 5)
             }
+            .navigationDestination(for: String.self, destination: { navText in
+                    AddRecipeView(day: selectedDay!, time: navText)
+            })
+            .navigationDestination(for: Int.self, destination: { navNum in
+                RecipeView(vm: searchVM)
+            })
+
         }
     }
     func fetchData(for exerciseName: String) {
